@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src"index.js"></script>
+    <!-- <script src="../src/App.js"></script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
 
     <!--
       manifest.json provides metadata used when your web app is added to the
@@ -36,81 +38,21 @@
         color: blue;
         text-align: center;
       }
+      input{
+        color: black;
+      }
+      h4{
+        color: red;
+        text-align: center;
+      }
 
     </style>
+
+
   </head>
   <body>
     <div id="root"></div>
 
-    <div class="container">
-      <h1>Digital Identity Using Smart Contracts</h1>
-      <br>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="name">Name: </label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="name" name="name">
-        </div>
-		  </div>
-      <br><br>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="email">Email:</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="email"  name="email">
-        </div>
-      </div>
-      <br><br>
-      <div class="form-group">
-          <label class="control-label col-sm-3" for="addr">Address:</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="addr" name="addr">
-        </div>
-      </div>
-      <br><br>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="dob">DOB:</label>
-        <div class="col-sm-9">
-          <input type="date" class="form-control" id="dob" name="dob">
-        </div>
-      </div>
-      <br><br>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="phone">Phone No: </label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="phone" name="phone">
-        </div>
-      </div>
-      <br><br>
-  	 <div class="form-group">
-  			<label class="control-label col-sm-3" for="Pwd">Password:</label>
-  		<div class="col-sm-9">
-  			<input type="password" class="form-control" id="Pwd" required>
-  		</div>
-  	 </div>
-     <br><br>
-  	 <div class="form-group">
-  			<label class="control-label col-sm-3" for="ConfirmPwd">Confirm Password:</label>
-  		<div class="col-sm-9">
-  			<input type="password" class="form-control" id="ConfirmPwd" required>
-  		</div>
-  	 </div>
-     <br><br><br>
-     <div class = "form-group" >
-       <!-- <label class = "col-sm-1">   </label> -->
-        <button class="btn btn-primary control-label col-sm-3" type="saveprofile">
-        		SAVE PROFILE
-      	</button>
-        <label class = "col-sm-1">   </label>
-        <button class="btn btn-primary control-label col-sm-3" type="sendprofile">
-         		SEND PROFILE
-       	</button>
-        <label class = "col-sm-1">   </label>
-        <button class="btn btn-primary control-label col-sm-3" type="viewprofile">
-         		VIEW PROFILE
-       	</button>
-     </div>
-
-
-    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
