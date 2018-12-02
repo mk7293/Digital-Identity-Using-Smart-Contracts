@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import web3 from "./web3";
-import identity from "./identity";
 import { saveProfile, sendProfile, viewProfile } from "./events";
 
 class App extends Component {
@@ -23,12 +22,13 @@ class App extends Component {
       event.preventDefault();
       this.setState({ errorMessage: "Password do no match" });
     } else {
+      event.preventDefault();
       saveProfile(this.state);
     }
   };
 
   viewProfile = async event => {
-    this.state.enabled = true;
+    viewProfile(this.state);
   };
 
   sendProfile = async event => {
@@ -44,13 +44,13 @@ class App extends Component {
 
         <form onSubmit={this.saveProfile} error={!!this.state.errorMessage}>
           <div>
-            <label class="control-label col-sm-1" />
-            <label class="control-label col-sm-3" for="name">
+            <label className="control-label col-sm-1" />
+            <label className="control-label col-sm-3" for="name">
               Name:
             </label>
 
             <input
-              class="col-sm-7"
+              className="col-sm-7"
               value={this.state.name}
               onChange={event => this.setState({ name: event.target.value })}
             />
@@ -58,13 +58,13 @@ class App extends Component {
           <br />
           <br />
           <div>
-            <label class="control-label col-sm-1" />
-            <label class="control-label col-sm-3" for="email">
+            <label className="control-label col-sm-1" />
+            <label className="control-label col-sm-3" for="email">
               Email:
             </label>
 
             <input
-              class="col-sm-7"
+              className="col-sm-7"
               value={this.state.email}
               onChange={event => this.setState({ email: event.target.value })}
             />
@@ -73,13 +73,13 @@ class App extends Component {
           <br />
           <br />
           <div>
-            <label class="control-label col-sm-1" />
-            <label class="control-label col-sm-3" for="address">
+            <label className="control-label col-sm-1" />
+            <label className="control-label col-sm-3" for="address">
               Address:
             </label>
 
             <input
-              class="col-sm-7"
+              className="col-sm-7"
               value={this.state.address}
               onChange={event => this.setState({ address: event.target.value })}
             />
@@ -88,13 +88,13 @@ class App extends Component {
           <br />
           <br />
           <div>
-            <label class="control-label col-sm-1" />
-            <label class="control-label col-sm-3" for="DOB">
+            <label className="control-label col-sm-1" />
+            <label className="control-label col-sm-3" for="DOB">
               DOB:
             </label>
 
             <input
-              class="col-sm-7"
+              className="col-sm-7"
               type="date"
               value={this.state.dob}
               onChange={event => this.setState({ dob: event.target.value })}
@@ -104,13 +104,13 @@ class App extends Component {
           <br />
           <br />
           <div>
-            <label class="control-label col-sm-1" />
-            <label class="control-label col-sm-3" for="phone">
+            <label className="control-label col-sm-1" />
+            <label className="control-label col-sm-3" for="phone">
               Phone No:
             </label>
 
             <input
-              class="col-sm-7"
+              className="col-sm-7"
               value={this.state.phone}
               onChange={event => this.setState({ phone: event.target.value })}
             />
@@ -119,13 +119,13 @@ class App extends Component {
           <br />
           <br />
           <div>
-            <label class="control-label col-sm-1" />
-            <label class="control-label col-sm-3" for="password">
+            <label className="control-label col-sm-1" />
+            <label className="control-label col-sm-3" for="password">
               Password:
             </label>
 
             <input
-              class="col-sm-7"
+              className="col-sm-7"
               type="password"
               value={this.state.password}
               onChange={event =>
@@ -138,13 +138,13 @@ class App extends Component {
           <br />
           <br />
           <div>
-            <label class="control-label col-sm-1" />
-            <label class="control-label col-sm-3" for="confirm_password">
+            <label className="control-label col-sm-1" />
+            <label className="control-label col-sm-3" for="confirm_password">
               Confirm Password:
             </label>
 
             <input
-              class="col-sm-7"
+              className="col-sm-7"
               type="password"
               value={this.state.confirmPassword}
               onChange={event =>
@@ -159,26 +159,29 @@ class App extends Component {
           <br />
           <br />
           <div>
-            <label class="control-label col-sm-1" />
-            <button class="btn btn-primary control-label col-sm-3">
+            <label className="control-label col-sm-1" />
+            <button className="btn btn-primary control-label col-sm-3">
               Save Profile
-            </button>
-            <label class="control-label col-sm-1" />
-            <button
-              class="btn btn-primary control-label col-sm-3"
-              onClick={this.sendProfile}
-            >
-              Send Profile
-            </button>
-            <label class="control-label col-sm-1" />
-            <button
-              class="btn btn-primary control-label col-sm-3"
-              onClick={this.viewProfile}
-            >
-              View Profile
             </button>
           </div>
         </form>
+
+        <div>
+          <label className="control-label col-sm-1" />
+          <button
+            className="btn btn-primary control-label col-sm-3"
+            onClick={this.sendProfile}
+          >
+            Send Profile
+          </button>
+          <label className="control-label col-sm-1" />
+          <button
+            className="btn btn-primary control-label col-sm-3"
+            onClick={this.viewProfile}
+          >
+            View Profile
+          </button>
+        </div>
       </div>
     );
   }

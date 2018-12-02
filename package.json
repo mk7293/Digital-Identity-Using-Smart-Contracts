@@ -1,0 +1,25 @@
+{
+  "name": "digital-identity",
+  "version": "1.0.0",
+  "description": "--> Install Node and NPM provide in details",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/mk7293/digital-identity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/mk7293/digital-identity/issues"
+  },
+  "homepage": "https://gitlab.com/mk7293/digital-identity#README",
+  "dependencies": {
+    "ganache-cli": "^6.2.3",
+    "mocha": "^5.2.0",
+    "solc": "^0.4.25",
+    "web3": "^1.0.0-beta.35"
+  }
+}
