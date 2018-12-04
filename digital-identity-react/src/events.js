@@ -7,24 +7,29 @@ var aes256 = require("aes256");
 export const saveProfile = async n => {
   const accounts = await web3.eth.getAccounts();
 
-  console.log("sdsd");
-  console.log(accounts[0]);
+  // console.log("sdsd");
+  // console.log(accounts[0]);
 
-  var encrpt_name = aes256.encrypt(n.password, n.name);
-  var encrpt_addr = aes256.encrypt(n.password, n.address);
-  var encrpt_dob = aes256.encrypt(n.password, n.dob);
-  var encrpt_phone = aes256.encrypt(n.password, n.phone);
-  var encrpt_email = aes256.encrypt(n.password, n.email);
+  var encrypt_name = aes256.encrypt(n.password, n.name);
+  var encrypt_addr = aes256.encrypt(n.password, n.address);
+  var encrypt_dob = aes256.encrypt(n.password, n.dob);
+  var encrypt_phone = aes256.encrypt(n.password, n.phone);
+  var encrypt_email = aes256.encrypt(n.password, n.email);
+  var encrypt_ssn = aes256.encrypt(n.password, n.ssn);
+  var encrypt_gender = aes256.encrypt(n.password, n.gender);
 
   // send the info to sol to store in the blockchain
 
   await identity.methods
     .saveProfile(
-      encrpt_name,
-      encrpt_addr,
-      encrpt_dob,
-      encrpt_phone,
-      encrpt_email
+      encrypt_name,
+      encrypt_addr,
+      encrypt_dob,
+      encrypt_phone,
+      encrypt_email,
+      encrypt_ssn,
+      encrypt_gender,
+      n.publicKey
     )
     .send({
       from: accounts[0],
@@ -32,11 +37,36 @@ export const saveProfile = async n => {
     });
 };
 
-export const sendProfile = n => {};
+export const sendProfile = async n => {
+  // const accounts = await web3.eth.getAccounts();
+  //
+  // const retrivedProfile = await identity.methods.getData1().call({
+  //   from: accounts[0]
+  // });
+  //
+  // retrivedProfile[0] = aes256.decrypt(n.sendPassword, retrivedProfile[0]);
+  // retrivedProfile[1] = aes256.decrypt(n.sendPassword, retrivedProfile[1]);
+  // retrivedProfile[2] = aes256.decrypt(n.sendPassword, retrivedProfile[2]);
+};
 
-export const viewProfile = n => {
-  alert("decrypt");
-  alert(aes256.decrypt(n.password, "Yb3KxMth/nd3SD5DiksG5z9j"));
+export const viewProfile = async n => {
+  const accounts = await web3.eth.getAccounts();
+
+  const retrivedProfile = await identity.methods.getData().call({
+    from: accounts[0]
+  });
+
+  retrivedProfile[0] = aes256.decrypt(n.viewPassword, retrivedProfile[0]);
+  retrivedProfile[1] = aes256.decrypt(n.viewPassword, retrivedProfile[1]);
+  retrivedProfile[2] = aes256.decrypt(n.viewPassword, retrivedProfile[2]);
+  retrivedProfile[3] = aes256.decrypt(n.viewPassword, retrivedProfile[3]);
+  retrivedProfile[4] = aes256.decrypt(n.viewPassword, retrivedProfile[4]);
+  retrivedProfile[5] = aes256.decrypt(n.viewPassword, retrivedProfile[5]);
+  retrivedProfile[6] = aes256.decrypt(n.viewPassword, retrivedProfile[6]);
+
+  return retrivedProfile;
+
+  // return ["ABC", "DFF"];
 };
 
 // function symmetricEncryption(key, data) {

@@ -3,7 +3,7 @@ const Web3 = require("web3");
 const { interface, bytecode } = require("./compile");
 
 const provider = new HDWalletProvider(
-  "clog chicken bar fix help that open sand sight major where lounge",
+  "guess cloth reflect absorb genre credit thunder script honey sail voice file",
   "https://rinkeby.infura.io/v3/918d511d25e74aca8b853442ae292c73"
 );
 

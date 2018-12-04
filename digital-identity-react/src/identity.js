@@ -1,6 +1,6 @@
 import web3 from "./web3";
 
-const address = "0x103B37998Ff67F8455322EF7A3afA31F1D8ff97e";
+const address = "0xf9ef7D3dF01E33fA8A4E9F18F2D83F076b434884";
 
 const abi = [
   {
@@ -13,10 +13,63 @@ const abi = [
     type: "function"
   },
   {
+    constant: false,
+    inputs: [
+      { name: "_name", type: "string" },
+      { name: "_mail", type: "string" },
+      { name: "_dob", type: "string" },
+      { name: "_phone", type: "string" },
+      { name: "_email", type: "string" },
+      { name: "_ssn", type: "string" },
+      { name: "_gender", type: "string" },
+      { name: "receiversAddress", type: "address" }
+    ],
+    name: "uploadData",
+    outputs: [],
+    payable: true,
+    stateMutability: "payable",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [{ name: "", type: "address" }],
+    name: "mailAddress",
+    outputs: [{ name: "", type: "string" }],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [
+      { name: "_name", type: "string" },
+      { name: "_mail", type: "string" },
+      { name: "_dob", type: "string" },
+      { name: "_phone", type: "string" },
+      { name: "_email", type: "string" },
+      { name: "_ssn", type: "string" },
+      { name: "_gender", type: "string" },
+      { name: "_publicKey", type: "string" }
+    ],
+    name: "saveProfile",
+    outputs: [],
+    payable: true,
+    stateMutability: "payable",
+    type: "function"
+  },
+  {
     constant: true,
     inputs: [],
     name: "getData",
-    outputs: [{ name: "", type: "string" }],
+    outputs: [
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" }
+    ],
     payable: false,
     stateMutability: "view",
     type: "function"
@@ -41,8 +94,8 @@ const abi = [
   },
   {
     constant: true,
-    inputs: [{ name: "", type: "address" }],
-    name: "mail_address",
+    inputs: [{ name: "receiversAddress", type: "address" }],
+    name: "getPublicKey",
     outputs: [{ name: "", type: "string" }],
     payable: false,
     stateMutability: "view",
@@ -50,13 +103,18 @@ const abi = [
   },
   {
     constant: true,
-    inputs: [],
-    name: "getData1",
-    outputs: [
-      { name: "", type: "string" },
-      { name: "", type: "string" },
-      { name: "", type: "string" }
-    ],
+    inputs: [{ name: "", type: "address" }],
+    name: "publicKey",
+    outputs: [{ name: "", type: "string" }],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [{ name: "", type: "address" }],
+    name: "ssn",
+    outputs: [{ name: "", type: "string" }],
     payable: false,
     stateMutability: "view",
     type: "function"
@@ -73,6 +131,15 @@ const abi = [
   {
     constant: true,
     inputs: [{ name: "", type: "address" }],
+    name: "gender",
+    outputs: [{ name: "", type: "string" }],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [{ name: "", type: "address" }],
     name: "email",
     outputs: [{ name: "", type: "string" }],
     payable: false,
@@ -80,18 +147,20 @@ const abi = [
     type: "function"
   },
   {
-    constant: false,
-    inputs: [
-      { name: "_name", type: "string" },
-      { name: "_mail", type: "string" },
-      { name: "_dob", type: "string" },
-      { name: "_phone", type: "string" },
-      { name: "_email", type: "string" }
+    constant: true,
+    inputs: [{ name: "sendersAddress", type: "address" }],
+    name: "getOthersData",
+    outputs: [
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" },
+      { name: "", type: "string" }
     ],
-    name: "saveProfile",
-    outputs: [],
-    payable: true,
-    stateMutability: "payable",
+    payable: false,
+    stateMutability: "view",
     type: "function"
   },
   {
