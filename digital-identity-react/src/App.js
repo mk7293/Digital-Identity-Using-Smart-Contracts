@@ -1,9 +1,15 @@
 //npm install react-collapsible --save
 //npm install react-checkbox-group
+//https://medium.com/@weblab_tech/encrypted-client-server-communication-protection-of-privacy-and-integrity-with-aes-and-rsa-in-c7b180fe614e
 
 import React, { Component } from "react";
 import "./App.css";
-import { saveProfile, sendProfile, viewProfile } from "./events";
+import {
+  saveProfile,
+  sendProfile,
+  viewProfile,
+  viewReceivedProfile
+} from "./events";
 import Collapsible from "react-collapsible";
 import { Checkbox, CheckboxGroup } from "react-checkbox-group";
 // import ExpandCollapse from "react-expand-collapse";
@@ -38,7 +44,9 @@ class App extends Component {
     isDrivingLicense: false,
     isGender: false,
     sendPassword: "",
-    receipientAddress: ""
+    receipientAddress: "",
+    viewRetProfile: [],
+    isViewHidden: false
   };
 
   saveProfile = async event => {
@@ -62,14 +70,27 @@ class App extends Component {
   };
 
   sendProfile = async event => {
+    event.preventDefault();
     sendProfile(this.state);
+  };
+
+  viewReceivedProfile = async event => {
+    event.preventDefault();
+    var a = await viewReceivedProfile(this.state);
+    this.setState({ viewRetProfile: a });
+    this.setState({ isViewHidden: true });
   };
 
   render() {
     return (
-      <div>
-        <h1>Digital Identity Using Smart Contracts</h1>
+      <div className="outer">
+        <div className="test2">
+          <h3>DIGITAL IDENTITY USING</h3>
+          <h3>SMART CONTRACTS</h3>
+        </div>
         <br />
+        <br />
+
         <Collapsible trigger="Save Profile">
           <form
             className="form-group"
@@ -220,7 +241,8 @@ class App extends Component {
               <label className="col-sm-6 control-label" />
               <button
                 className="col-sm-5 control-label"
-                className="btn btn-primary"
+                className="btn btn-primary black-background white"
+                // background-color="black"
               >
                 Save Profile
               </button>
@@ -255,11 +277,8 @@ class App extends Component {
             ) : null}
 
             <div>
-              <label className="col-sm-6 control-label" />
-              <button
-                className="col-sm-5 control-label"
-                className="btn btn-primary "
-              >
+              <label className="col-sm-5 control-label" />
+              <button className="btn btn-primary control-label col-sm-3 black-background white">
                 View Profile
               </button>
             </div>
@@ -454,7 +473,7 @@ class App extends Component {
 
             <div>
               <label className="control-label col-sm-5" />
-              <button className="btn btn-primary control-label col-sm-3">
+              <button className="btn btn-primary control-label col-sm-3 black-background white">
                 Send Profile
               </button>
             </div>
@@ -464,14 +483,18 @@ class App extends Component {
         <br />
 
         <Collapsible trigger="ViewReceivedProfile">
-          <form className="form-group" className="form-style-5">
+          <form
+            onSubmit={this.viewReceivedProfile}
+            className="form-group"
+            className="form-style-5"
+          >
             <div>
               <label className="col-sm-3 control-label" htmlFor="PrivateKey">
                 Enter Sender Address:
               </label>
 
               <input
-                type="password"
+                type="text"
                 value={this.state.senderAddress}
                 onChange={event =>
                   this.setState({ senderAddress: event.target.value })
@@ -495,12 +518,66 @@ class App extends Component {
             </div>
 
             <div>
-              <label className="control-label col-sm-5" />
-              <button className="btn btn-primary control-label col-sm-3">
+              <label className="Receivedcontrol-label col-sm-5" />
+              <button className="btn btn-primary control-label col-sm-3 black-background white">
                 View Received Profile
               </button>
+              <label className="Receivedcontrol-label col-sm-4" />
             </div>
           </form>
+          <br />
+          {this.state.isViewHidden ? (
+            <form className="form-group">
+              <div>
+                <label className="col-sm-3 control-label">Name: </label>
+                <label type="hidden" className="col-sm-9 control-label">
+                  {this.state.viewRetProfile[0]}
+                </label>
+              </div>
+
+              <div>
+                <label className="col-sm-3 control-label">Email: </label>
+                <label className="col-sm-9 control-label">
+                  {this.state.viewRetProfile[4]}
+                </label>
+              </div>
+
+              <div>
+                <label className="col-sm-3 control-label">Address: </label>
+                <label className="col-sm-9 control-label">
+                  {this.state.viewRetProfile[1]}
+                </label>
+              </div>
+
+              <div>
+                <label className="col-sm-3 control-label">DOB: </label>
+                <label className="col-sm-9 control-label">
+                  {this.state.viewRetProfile[2]}
+                </label>
+              </div>
+
+              <div>
+                <label className="col-sm-3 control-label">Phone No: </label>
+                <label className="col-sm-9 control-label">
+                  {this.state.viewRetProfile[3]}
+                </label>
+              </div>
+
+              <div>
+                <label className="col-sm-3 control-label">SSN: </label>
+                <label className="col-sm-9 control-label">
+                  {this.state.viewRetProfile[5]}
+                </label>
+              </div>
+
+              <div>
+                <label className="col-sm-3 control-label">Gender: </label>
+                <label className="col-sm-9 control-label">
+                  {this.state.viewRetProfile[6]}
+                </label>
+              </div>
+            </form>
+          ) : null}
         </Collapsible>
       </div>
     );

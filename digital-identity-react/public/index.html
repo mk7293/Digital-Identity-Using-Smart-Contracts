@@ -12,6 +12,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="bin/jsencrypt.min.js"></script>
     <script src"index.js"></script>
+    <script type="text/javascript" src="hybrid-crypto.min.js"></script>
+
+
     <!-- <script src="../src/App.js"></script> -->
     <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
 
@@ -32,7 +35,7 @@
     <title>Digital Identity</title>
     <style>
       body {
-        color: blue;
+        color: black;
         background-color: #F0F8FF;
     	}
       h1{
@@ -45,6 +48,11 @@
       h4{
         color: red;
         text-align: center;
+      }
+
+      h3{
+        text-align: center;
+        color:white;
       }
 
       .Collapsible {
@@ -62,6 +70,8 @@
       margin-bottom: 0; }
 
 .Collapsible__trigger {
+  font-size: 18px;
+  text-align: center;
   display: block;
   font-weight: 400;
   text-decoration: none;
@@ -71,6 +81,7 @@
   padding: 10px;
   background: #00ac9d;
   color: white; }
+
   .Collapsible__trigger:after {
     font-family: 'FontAwesome';
     content: '\f107';
@@ -84,8 +95,6 @@
   .Collapsible__trigger.is-disabled {
     opacity: 0.5;
     background-color: grey; }
-
-
 
 .form-style-5{
 max-width: 1000px;
@@ -193,6 +202,24 @@ margin-bottom: 10px;
 background: #109177;
 }
 
+.outer {
+  margin: 100px;
+}
+
+.test2{
+   width: 100%;
+  height: 115px;
+  /* background-color: #D1C32F; */
+  background-color: #407B76;
+  color: black;
+  position: absolute;
+  transition: all 3s ease;
+  top: 0;
+  left: 0;
+}
+
+.black-background {background-color:#000000;}
+.white {color:#ffffff;}
     </style>
 
 
