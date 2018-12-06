@@ -1,7 +1,7 @@
 //  npm install aes256
 import identity from "./identity";
 import web3 from "./web3";
-var Crypt = require("hybrid-crypto-js").Crypt;
+
 var aes256 = require("aes256");
 
 export const saveProfile = async n => {
@@ -37,8 +37,6 @@ export const saveProfile = async n => {
 export const sendProfile = async n => {
   const accounts = await web3.eth.getAccounts();
 
-  crypt = Crypt();
-
   var sendName = "";
   var sendAddress = "";
   var dob = "";
@@ -46,7 +44,7 @@ export const sendProfile = async n => {
   var email = "";
   var ssn = "";
   var gender = "";
-  var uniqueKey = n.sendPassword;
+  var uniqueKey = "hello";
 
   // var crypt = Crypt();
 
@@ -71,25 +69,25 @@ export const sendProfile = async n => {
   retrivedProfile[6] = aes256.decrypt(n.sendPassword, retrivedProfile[6]);
 
   if (n.isName) {
-    sendName = crypt.encrypt(uniqueKey, retrivedProfile[0]);
+    sendName = aes256.encrypt(uniqueKey, retrivedProfile[0]);
   }
   if (n.isAddress) {
-    sendAddress = crypt.encrypt(uniqueKey, retrivedProfile[1]);
+    sendAddress = aes256.encrypt(uniqueKey, retrivedProfile[1]);
   }
   if (n.isDOB) {
-    dob = crypt.encrypt(uniqueKey, retrivedProfile[2]);
+    dob = aes256.encrypt(uniqueKey, retrivedProfile[2]);
   }
   if (n.isPhone) {
-    phone = crypt.encrypt(uniqueKey, retrivedProfile[3]);
+    phone = aes256.encrypt(uniqueKey, retrivedProfile[3]);
   }
   if (n.isEmail) {
-    email = crypt.encrypt(uniqueKey, retrivedProfile[4]);
+    email = aes256.encrypt(uniqueKey, retrivedProfile[4]);
   }
   if (n.ssn) {
-    ssn = crypt.encrypt(uniqueKey, retrivedProfile[5]);
+    ssn = aes256.encrypt(uniqueKey, retrivedProfile[5]);
   }
   if (n.isGender) {
-    gender = crypt.encrypt(uniqueKey, retrivedProfile[6]);
+    gender = aes256.encrypt(uniqueKey, retrivedProfile[6]);
   }
 
   // var randomKey = crypt.encrypt(receipientPublicKey, uniqueKey);
@@ -189,7 +187,7 @@ export const viewProfile = async n => {
 export const viewReceivedProfile = async n => {
   const accounts = await web3.eth.getAccounts();
 
-  var key = n.privateKey;
+  var key = "hello";
 
   const retriveReceivedProfile = await identity.methods
     .getOthersData(n.senderAddress)
@@ -197,23 +195,21 @@ export const viewReceivedProfile = async n => {
       from: accounts[0]
     });
 
-  crypt = Crypt();
-
   if (retriveReceivedProfile[0] !== "") {
-    retriveReceivedProfile[0] = crypt.decrypt(key, retriveReceivedProfile[0]);
+    retriveReceivedProfile[0] = aes256.decrypt(key, retriveReceivedProfile[0]);
   }
   if (retriveReceivedProfile[1] !== "")
-    retriveReceivedProfile[1] = crypt.decrypt(key, retriveReceivedProfile[1]);
+    retriveReceivedProfile[1] = aes256.decrypt(key, retriveReceivedProfile[1]);
   if (retriveReceivedProfile[2] !== "")
-    retriveReceivedProfile[2] = crypt.decrypt(key, retriveReceivedProfile[2]);
+    retriveReceivedProfile[2] = aes256.decrypt(key, retriveReceivedProfile[2]);
   if (retriveReceivedProfile[3] !== "")
-    retriveReceivedProfile[3] = crypt.decrypt(key, retriveReceivedProfile[3]);
+    retriveReceivedProfile[3] = aes256.decrypt(key, retriveReceivedProfile[3]);
   if (retriveReceivedProfile[4] !== "")
-    retriveReceivedProfile[4] = crypt.decrypt(key, retriveReceivedProfile[4]);
+    retriveReceivedProfile[4] = aes256.decrypt(key, retriveReceivedProfile[4]);
   if (retriveReceivedProfile[5] !== "")
-    retriveReceivedProfile[5] = crypt.decrypt(key, retriveReceivedProfile[5]);
+    retriveReceivedProfile[5] = aes256.decrypt(key, retriveReceivedProfile[5]);
   if (retriveReceivedProfile[6] !== "")
-    retriveReceivedProfile[6] = crypt.decrypt(key, retriveReceivedProfile[6]);
+    retriveReceivedProfile[6] = aes256.decrypt(key, retriveReceivedProfile[6]);
 
   return retriveReceivedProfile;
 };
