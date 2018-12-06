@@ -50,16 +50,16 @@ class App extends Component {
   };
 
   saveProfile = async event => {
-    if (this.state.password !== this.state.confirmPassword) {
-      event.preventDefault();
-      this.setState({ isNotMatch: true });
-      this.setState({ errorMessage: "Password do no match" });
-    } else {
-      alert(this.state.gender);
-      this.setState({ isNotMatch: false });
-      event.preventDefault();
-      saveProfile(this.state);
-    }
+    // if (this.state.password !== this.state.confirmPassword) {
+    //   event.preventDefault();
+    //   this.setState({ isNotMatch: true });
+    //   this.setState({ errorMessage: "Password do no match" });
+    // } else {
+    alert(this.state.gender);
+    this.setState({ isNotMatch: false });
+    event.preventDefault();
+    saveProfile(this.state);
+    // }
   };
 
   viewProfile = async event => {
@@ -85,13 +85,13 @@ class App extends Component {
     return (
       <div className="outer">
         <div className="test2">
-          <h3>DIGITAL IDENTITY USING</h3>
-          <h3>SMART CONTRACTS</h3>
+          <h2>DIGITAL IDENTITY USING</h2>
+          <h2>SMART CONTRACTS</h2>
         </div>
         <br />
         <br />
 
-        <Collapsible trigger="Save Profile">
+        <Collapsible trigger="SAVE PROFILE">
           <form
             className="form-group"
             className="form-style-5"
@@ -203,7 +203,7 @@ class App extends Component {
 
             <div>
               <label className="col-sm-3 control-label" htmlFor="password">
-                Password:
+                Enter Private Key:
               </label>
 
               <input
@@ -215,27 +215,6 @@ class App extends Component {
                 required
               />
             </div>
-
-            <div>
-              <label
-                className="col-sm-3 control-label"
-                htmlFor="confirm_password"
-              >
-                Confirm Password:
-              </label>
-
-              <input
-                type="password"
-                value={this.state.confirmPassword}
-                onChange={event =>
-                  this.setState({ confirmPassword: event.target.value })
-                }
-                required
-              />
-            </div>
-            {this.state.isNotMatch ? (
-              <h4 color="red">{this.state.errorMessage}</h4>
-            ) : null}
 
             <div>
               <label className="col-sm-6 control-label" />
@@ -251,7 +230,7 @@ class App extends Component {
         </Collapsible>
         <br />
 
-        <Collapsible trigger="View Profile">
+        <Collapsible trigger="VIEW PROFILE">
           <form
             className="form-group"
             className="form-style-5"
@@ -259,7 +238,7 @@ class App extends Component {
           >
             <div>
               <label className="col-sm-3 control-label" htmlFor="viewPassword">
-                Password:
+                Enter Private Key:
               </label>
 
               <input
@@ -271,10 +250,6 @@ class App extends Component {
                 required
               />
             </div>
-
-            {this.state.isNotMatch ? (
-              <h4 color="red">{this.state.errorMessage}</h4>
-            ) : null}
 
             <div>
               <label className="col-sm-5 control-label" />
@@ -340,7 +315,7 @@ class App extends Component {
         </Collapsible>
         <br />
 
-        <Collapsible trigger="Send Profile">
+        <Collapsible trigger="SEND PROFILE">
           <form
             className="form-group"
             className="form-style-5"
@@ -458,7 +433,7 @@ class App extends Component {
 
             <div>
               <label className="col-sm-3 control-label" htmlFor="sendPassword">
-                Password:
+                Enter Private Key:
               </label>
 
               <input
@@ -482,7 +457,7 @@ class App extends Component {
 
         <br />
 
-        <Collapsible trigger="ViewReceivedProfile">
+        <Collapsible trigger="VIEW RECEIVED PROFILE">
           <form
             onSubmit={this.viewReceivedProfile}
             className="form-group"
