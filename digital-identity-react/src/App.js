@@ -58,7 +58,8 @@ class App extends Component {
     alert(this.state.gender);
     this.setState({ isNotMatch: false });
     event.preventDefault();
-    saveProfile(this.state);
+    await saveProfile(this.state);
+    window.location.reload();
     // }
   };
 
